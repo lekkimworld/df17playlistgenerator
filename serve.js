@@ -114,6 +114,7 @@ app.get('/data(/:filter)?', (req, res) => {
     if (!filter || !filter.trim().length) {
         filter = undefined
     }
+    filter = filter.trim().toLowerCase()
     dataprovider.getDays().then(data => {
         if (!filter) {
             // no filter - send as is

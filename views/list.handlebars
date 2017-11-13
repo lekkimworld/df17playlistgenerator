@@ -149,6 +149,7 @@
     })
     let handle
     document.getElementById('container').addEventListener('keyup', (event) => {
+        if (event.srcElement.id !== 'filter') return
         window.clearTimeout(handle)
         handle = window.setTimeout(() => {
             let filter = document.getElementById('filter').value
@@ -158,5 +159,6 @@
         event.preventDefault()
     })
 
+    // load all data
     loadData()
 </script>
