@@ -26,6 +26,7 @@
     <div id="data"></div>
 </div>
 <script type="text/javascript">
+    const TYPE_SEARCH_DELAY = 500
     const loadData = (filter) => {
         fetch(`/data/${filter ? filter : ''}`, {'credentials': 'same-origin'})
             .then(resp => {
@@ -148,14 +149,17 @@
         }
     })
     let handle
+    let lastQuery = ''
     document.getElementById('container').addEventListener('keyup', (event) => {
         if (event.srcElement.id !== 'filter') return
         window.clearTimeout(handle)
         handle = window.setTimeout(() => {
-            let filter = document.getElementById('filter').value
-            console.log(`Typeahead filter: ${filter}`)
-            loadData(filter)
-        }, 300)
+            let filter = document.getElementById('filter').value.toLowerCase()
+            if (lastQuery === filter) return
+            console.log(`Typeahead filter: <${filter}> (last <${lastQuery}>)`)
+            lastQuery = filter
+            loadData(lastQuery)
+        }, TYPE_SEARCH_DELAY)
         event.preventDefault()
     })
 
