@@ -114,12 +114,12 @@ app.get('/data(/:filter)?', (req, res) => {
     if (!filter || !filter.trim().length) {
         filter = undefined
     }
-    filter = filter.trim().toLowerCase()
     dataprovider.getDays().then(data => {
         if (!filter) {
             // no filter - send as is
             return res.status(200).send(JSON.stringify(data)).end()
         }
+        filter = filter.trim().toLowerCase()
         let result = Object.keys(data).reduce((prev, key) => {
             prev[key] = data[key].filter(session => session.title_lowercase.indexOf(filter) >= 0)
             return prev
