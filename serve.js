@@ -84,7 +84,7 @@ app.get('/oauth2/callback', (req, res) => {
         req.session.authorized = tokens
 
         console.log('Redirecting back to application')
-        res.redirect('/')
+        res.redirect('/list')
     })
 })
 app.use('/*', (req, res, next) => {
@@ -108,9 +108,9 @@ app.use('/*', (req, res, next) => {
         next()
     }
 })
-app.get('/', (req, res) => {
+app.get('/list', (req, res) => {
     // home
-    res.render("home")
+    res.render("list")
 })
 app.get('/data(/:filter)?', (req, res) => {
     // load the data
