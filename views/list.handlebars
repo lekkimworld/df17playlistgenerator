@@ -133,7 +133,7 @@
                     })
                 }).then(resp => {
                     if (resp.status === 201 || resp.status === 204) {
-                        alert(`Created playlist called '${name}'' with ${videoIds.size} videos.`)
+                        alert(`Created playlist called '${name}'' with ${videoIds.length} videos.`)
                     }
                 })
         } else if (src.localName === 'input' && src.type === 'checkbox') {
