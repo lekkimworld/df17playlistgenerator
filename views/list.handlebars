@@ -118,6 +118,8 @@
             if (!confirm('Are you sure?')) return
 
             // create
+            let videoIds = Array.from(ids)
+            ids = new Set()
             fetch('/create_playlist', 
                 {
                     'credentials': 'same-origin',
@@ -127,7 +129,7 @@
                     },
                     'body': JSON.stringify({
                         'name': name,
-                        'youtube_ids': Array.from(ids)
+                        'youtube_ids': videoIds
                     })
                 }).then(resp => {
                     if (resp.status === 201 || resp.status === 204) {
@@ -166,3 +168,10 @@
     // load all data
     loadData()
 </script>
+<style type="text/css">
+@media (max-width: 767px) {
+    .col-sm-12 {
+        margin-top: 10px;
+    }
+}
+</style>
