@@ -135,7 +135,7 @@
                     }
                 })
         } else if (src.localName === 'input' && src.type === 'checkbox') {
-            if (src.checked) {
+            if (src.checked && src.value) {
                 ids.add(src.value)
             } else {
                 ids.delete(src.value)
