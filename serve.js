@@ -63,6 +63,10 @@ app.use(session({
     'secret': process.env.SESSION_SECRET || 'kdsfh23748urweifhsdiw47382qyrwfhoedslc'
 }))
 
+app.get('/', (req, res) => {
+    // home
+    res.render("home")
+})
 app.get('/oauth2/callback', (req, res) => {
     // get authcode from url
     let authcode = req.query.code
@@ -105,8 +109,8 @@ app.use('/*', (req, res, next) => {
     }
 })
 app.get('/', (req, res) => {
-    // load the data
-    res.render("list")
+    // home
+    res.render("home")
 })
 app.get('/data(/:filter)?', (req, res) => {
     // load the data
