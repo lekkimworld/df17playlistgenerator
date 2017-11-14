@@ -8,6 +8,7 @@ const DataProvider = new require('./dataprovider')
 const google = require('googleapis')
 const googleAuth = require('google-auth-library')
 const bodyParser = require('body-parser')
+const waterfall = require('promise-waterfall')
 const SCOPES = ['https://www.googleapis.com/auth/youtube']
 
 try {
@@ -165,7 +166,7 @@ app.post('/create_playlist', (req, res) => {
         })
 
         // execute all in parallel
-        return Promise.all(promises).then(data => {
+        waterfall(promises).then(() => {
             res.status(201).end()
         }).catch(err => {
             // one or more additions failed
